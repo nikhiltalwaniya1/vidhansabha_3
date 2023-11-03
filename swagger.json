@@ -1,0 +1,390 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "version": "1.0.0",
+    "title": "Coke-App",
+    "description": "Coke-App"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5000/api/v1"
+    }
+  ],
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "paths": {
+    "/createUser": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Create User",
+        "description": "Create User",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "contentType"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "default": "Enter your name"
+                  },
+                  "phonenumber": {
+                    "type": "string",
+                    "default": "Enter your Phone Number"
+                  },
+                  "password": {
+                    "type": "string",
+                    "default": "Enter your Password"
+                  },
+                  "address": {
+                    "type": "string",
+                    "default": "Enter your address"
+                  },
+                  "state": {
+                    "type": "string",
+                    "default": "Enter your state"
+                  },
+                  "city": {
+                    "type": "string",
+                    "default": "Enter your city"
+                  },
+                  "pincode": {
+                    "type": "string",
+                    "default": "Enter your pincode"
+                  },
+                  "assemblyNo": {
+                    "type": "string",
+                    "default": "Enter your assembly No"
+                  },
+                  "role": {
+                    "type": "string",
+                    "default": "Enter your role"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Create User",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "1 for success 0 for failure"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message to be displayed in alert"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/createAssemblies": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Create Asseblies",
+        "description": "Create Asseblies",
+        "responses": {
+          "200": {
+            "description": "Create Asseblies",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "1 for success 0 for failure"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message to be displayed in alert"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Create User",
+        "description": "Create User",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "contentType"
+                ],
+                "properties": {
+                  "phonenumber": {
+                    "type": "string",
+                    "default": "Enter your Phone Number"
+                  },
+                  "password": {
+                    "type": "string",
+                    "default": "Enter your Password"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Create User",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "1 for success 0 for failure"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message to be displayed in alert"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/createComplaint": {
+      "post": {
+        "tags": [
+          "Complaint"
+        ],
+        "summary": "Create Complaint",
+        "description": "Create Complaint",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "contentType"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "default": "Enter your name"
+                  },
+                  "phonenumber": {
+                    "type": "string",
+                    "default": "Enter your Phone Number"
+                  },
+                  "password": {
+                    "type": "string",
+                    "default": "Enter your Password"
+                  },
+                  "address": {
+                    "type": "string",
+                    "default": "Enter your address"
+                  },
+                  "state": {
+                    "type": "string",
+                    "default": "Enter your state"
+                  },
+                  "city": {
+                    "type": "string",
+                    "default": "Enter your city"
+                  },
+                  "pincode": {
+                    "type": "string",
+                    "default": "Enter your pincode"
+                  },
+                  "assemblyNo": {
+                    "type": "string",
+                    "default": "Enter your assembly No"
+                  },
+                  "role": {
+                    "type": "string",
+                    "default": "Enter your role"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Create Complaint",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "1 for success 0 for failure"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message to be displayed in alert"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/assembliesList": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Create Asseblies",
+        "description": "Create Asseblies",
+        "responses": {
+          "200": {
+            "description": "Create Asseblies",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "1 for success 0 for failure"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message to be displayed in alert"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "Error": {
+        "required": [
+          "status",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "description": "1 for success 0 for failure"
+          },
+          "message": {
+            "type": "string",
+            "description": "message to be displayed in alert"
+          }
+        }
+      }
+    }
+  }
+}
