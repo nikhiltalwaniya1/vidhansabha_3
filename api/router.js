@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const authController = require("./auth/authCotroller")
 const { checkToken } = require("../utills/middileware")
-const complaintController = require("./complant/complantController")
+const complaintController = require("./complaint/complaintController")
 const assembliesController = require("./Assemblies/assembilesController")
 //Api for create user
 router.post("/createUser", authController.createUser)
@@ -18,5 +18,20 @@ router.get("/assembliesList", checkToken, assembliesController.assembliesList)
 router.get("/createWards", checkToken, assembliesController.createWards)
 //Api for add Assemblies in data base
 router.get("/wardsLists", checkToken, assembliesController.wardsLists)
+//Api for create Suggestion 
+router.post("/createSuggestion", checkToken, complaintController.createSuggestion)
+//Api for update complaint 
+router.post("/updateComplaint", checkToken, complaintController.updateComplaint)
+//Api for complaint details with user id
+router.get("/complaintDetailsWithUserId", checkToken, complaintController.complaintDetailsWithUserId)
+//Api for complaint details with Hendlar id
+router.get("/complaintDetailsWithHandlerId", checkToken, complaintController.complaintDetailsWithHandlerId)
+//Api for all complaint details 
+router.get("/allcomplaintDetails", checkToken, complaintController.allcomplaintDetails)
+//Api for suggestion details with user id
+router.get("/suggestionDetailsWithUserId", checkToken, complaintController.suggestionDetailsWithUserId)
+//Api for all suggestion details 
+router.get("/allsuggestionDetails", checkToken, complaintController.allsuggestionDetails)
+
 
 module.exports = router

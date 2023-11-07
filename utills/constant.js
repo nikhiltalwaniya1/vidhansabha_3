@@ -1,6 +1,7 @@
 const role = {
   admin:1,
-  user:2
+  user:2,
+  complaintHandler:3
 }
 
 const statusCode = {
@@ -13,11 +14,22 @@ const userStatus = {
   INACTIVE:"Inactive"
 }
 
+typeOfComplant = {
+  SECRET:"Secret",
+  SUGGESTION:"Suggestion",
+  COMPLANT:"Complant"
+}
 
+complaintStatus = {
+  Done:"Done",
+  Not_Done:"Panding"
+}
 
 module.exports = {
   role,
   statusCode,
-  userStatus
+  userStatus,
+  typeOfComplant,
+  complaintStatus
 }
 

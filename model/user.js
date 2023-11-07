@@ -38,10 +38,15 @@ const userSchema = new schema(
       required: true,
       default:""
     },
-    assemblyNo:{
+    assemblyId:{
       type: schema.Types.ObjectId, 
       required: true,
-      ref: "user",
+      ref: "assembly",
+    },
+    wardId:{
+      type: schema.Types.ObjectId, 
+      required: true,
+      ref: "ward",
     },
     role:{
       type: schema.Types.String, 

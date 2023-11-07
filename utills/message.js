@@ -9,7 +9,12 @@ const message = {
   Password_Sended:"Password Sent Successfully...",
   Details_not_matched:"Details Mismatched",
   File_not_upload:"File Not Uploaded",
-  User_Active:"User Active Successfully..."
+  User_Active:"User Active Successfully...",
+  Error_In_Creating_Complaint:"Some Error in creating complaint",
+  complaint_registered:"Complaint Registerd Successfully.",
+  suggestion_registered:"Suggestion Registerd Successfully.",
+  update_complaint:"Update Complaint Successfully.",
+
 }
 
 module.exports = {

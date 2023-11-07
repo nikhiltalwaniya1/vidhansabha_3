@@ -6,6 +6,10 @@ const wardSchema = new schema(
     wardName: {
       type: schema.Types.String,
       required: true,
+    },
+    assemblyId:{
+      type: schema.Types.ObjectId,
+      required: true,
     }
   },
   {

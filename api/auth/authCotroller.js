@@ -23,6 +23,7 @@ exports.createUser = async (req, res) => {
       })
     }
   } catch (error) {
+    console.log("Error== in create user ", error)
     return res.status(statusCode.error).send({
       message: message.SOMETHING_WENT_WRONG
     })

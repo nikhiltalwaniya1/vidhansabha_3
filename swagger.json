@@ -60,7 +60,11 @@
                     "type": "string",
                     "default": "Enter your pincode"
                   },
-                  "assemblyNo": {
+                  "assemblyId": {
+                    "type": "string",
+                    "default": "Enter your assembly No"
+                  },
+                  "wardId": {
                     "type": "string",
                     "default": "Enter your assembly No"
                   },
@@ -236,41 +240,21 @@
                   "contentType"
                 ],
                 "properties": {
-                  "name": {
+                  "assemblyId": {
                     "type": "string",
-                    "default": "Enter your name"
+                    "default": "Enter your assembly Id"
                   },
-                  "phonenumber": {
+                  "wardId": {
                     "type": "string",
-                    "default": "Enter your Phone Number"
+                    "default": "Enter your ward Id"
                   },
-                  "password": {
+                  "complaintDescription": {
                     "type": "string",
-                    "default": "Enter your Password"
+                    "default": "Enter your Complaint Description"
                   },
-                  "address": {
+                  "complaintType": {
                     "type": "string",
-                    "default": "Enter your address"
-                  },
-                  "state": {
-                    "type": "string",
-                    "default": "Enter your state"
-                  },
-                  "city": {
-                    "type": "string",
-                    "default": "Enter your city"
-                  },
-                  "pincode": {
-                    "type": "string",
-                    "default": "Enter your pincode"
-                  },
-                  "assemblyNo": {
-                    "type": "string",
-                    "default": "Enter your assembly No"
-                  },
-                  "role": {
-                    "type": "string",
-                    "default": "Enter your role"
+                    "default": "Enter your Complaint Type"
                   }
                 }
               }
@@ -412,6 +396,362 @@
         "responses": {
           "200": {
             "description": "Wards List",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "1 for success 0 for failure"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message to be displayed in alert"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/createSuggestion": {
+      "post": {
+        "tags": [
+          "Complaint"
+        ],
+        "summary": "Create Complaint",
+        "description": "Create Complaint",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "contentType"
+                ],
+                "properties": {
+                  "assemblyId": {
+                    "type": "string",
+                    "default": "Enter your assembly Id"
+                  },
+                  "wardId": {
+                    "type": "string",
+                    "default": "Enter your ward Id"
+                  },
+                  "suggestionDescription": {
+                    "type": "string",
+                    "default": "Enter your Complaint Description"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Create Complaint",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "1 for success 0 for failure"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message to be displayed in alert"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/updateComplaint": {
+      "post": {
+        "tags": [
+          "Complaint"
+        ],
+        "summary": "Update Complaint",
+        "description": "Update Complaint",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "contentType"
+                ],
+                "properties": {
+                  "complaintDescription": {
+                    "type": "string",
+                    "default": "Enter your Complaint Description"
+                  },
+                  "complaintId": {
+                    "type": "string",
+                    "default": "Enter your Complaint Id"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Update Complaint",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "1 for success 0 for failure"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message to be displayed in alert"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/complaintDetailsWithUserId": {
+      "get": {
+        "tags": [
+          "Complaint"
+        ],
+        "summary": "Complaint List",
+        "description": "Complaint List",
+        "responses": {
+          "200": {
+            "description": "Complaint List",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "1 for success 0 for failure"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message to be displayed in alert"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/complaintDetailsWithHandlerId": {
+      "get": {
+        "tags": [
+          "Complaint"
+        ],
+        "summary": "Complaint List",
+        "description": "Complaint List",
+        "responses": {
+          "200": {
+            "description": "Complaint List",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "1 for success 0 for failure"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message to be displayed in alert"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/allcomplaintDetails": {
+      "get": {
+        "tags": [
+          "Complaint"
+        ],
+        "summary": "Complaint List",
+        "description": "Complaint List",
+        "responses": {
+          "200": {
+            "description": "Complaint List",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "1 for success 0 for failure"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message to be displayed in alert"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/suggestionDetailsWithUserId": {
+      "get": {
+        "tags": [
+          "Complaint"
+        ],
+        "summary": "Complaint List",
+        "description": "Complaint List",
+        "responses": {
+          "200": {
+            "description": "Complaint List",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "1 for success 0 for failure"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message to be displayed in alert"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/allsuggestionDetails": {
+      "get": {
+        "tags": [
+          "Complaint"
+        ],
+        "summary": "Suggestion List",
+        "description": "Suggestion List",
+        "responses": {
+          "200": {
+            "description": "Suggestion List",
             "content": {
               "application/json": {
                 "schema": {

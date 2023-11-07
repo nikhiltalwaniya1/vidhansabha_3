@@ -64,7 +64,7 @@ exports.createWards = async (req, res) => {
     ]
     for (let index = 0; index < wardArray.length; index++) {
       const wardName = wardArray[index];
-      const saveWards = await ward.insertMany({wardName:wardName})      
+      const saveWards = await ward.insertMany({wardName:wardName, assemblyId:"653f62ad2d78d1e25ff1d189"})      
     }
     return res.status(statusCode.success).send({
       message: message.SUCCESS
