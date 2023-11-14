@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url":"https://vidhansabha-3.vercel.app/api/v1" 
+      "url":"https://vidhansabha-3.vercel.app/api/v1"
     }
   ],
   "security": [
