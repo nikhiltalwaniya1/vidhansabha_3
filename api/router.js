@@ -32,6 +32,7 @@ router.get("/allcomplaintDetails", checkToken, complaintController.allcomplaintD
 router.get("/suggestionDetailsWithUserId", checkToken, complaintController.suggestionDetailsWithUserId)
 //Api for all suggestion details 
 router.get("/allsuggestionDetails", checkToken, complaintController.allsuggestionDetails)
-
+//Api for Resolve by Hendler 
+router.post("/complaintResolveAndClose", checkToken, complaintController.complaintResolve)
 
 module.exports = router

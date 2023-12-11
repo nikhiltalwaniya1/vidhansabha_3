@@ -251,6 +251,10 @@
                     "type": "string",
                     "default": "Enter your ward Id"
                   },
+                  "complaintTitle": {
+                    "type": "string",
+                    "default": "Enter your Complaint Title"
+                  },
                   "complaintDescription": {
                     "type": "string",
                     "default": "Enter your Complaint Description"
@@ -456,6 +460,10 @@
                   "wardId": {
                     "type": "string",
                     "default": "Enter your ward Id"
+                  },
+                  "suggestionTitle": {
+                    "type": "string",
+                    "default": "Enter your Complaint Title"
                   },
                   "suggestionDescription": {
                     "type": "string",
@@ -755,6 +763,72 @@
         "responses": {
           "200": {
             "description": "Suggestion List",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "1 for success 0 for failure"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message to be displayed in alert"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/complaintResolveAndClose": {
+      "post": {
+        "tags": [
+          "Complaint"
+        ],
+        "summary": "Create Complaint",
+        "description": "Create Complaint",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "contentType"
+                ],
+                "properties": {
+                  "complaintId": {
+                    "type": "string",
+                    "default": "Enter your complaint Id"
+                  },
+                  "complaintStatus": {
+                    "type": "string",
+                    "default": "Enter your complaint Status"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Create Complaint",
             "content": {
               "application/json": {
                 "schema": {

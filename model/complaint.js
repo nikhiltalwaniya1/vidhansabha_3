@@ -35,6 +35,11 @@ const complaintSchema = new schema(
       type: schema.Types.String,
       required: true,
       default:"Panding"
+    },
+    complaintTitle:{
+      type: schema.Types.String,
+      required: true,
+      default:""
     }
   },
   {

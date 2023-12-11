@@ -26,6 +26,11 @@ const suggestionSchema = new schema(
       type: schema.Types.String,
       required: true,
       default:""
+    },
+    suggestionTitle:{
+      type: schema.Types.String,
+      required: true,
+      default:""
     }
   },
   {

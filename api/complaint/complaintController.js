@@ -12,6 +12,7 @@ exports.createComplaint = async (req, res) => {
     const assemblyId = req.body.assemblyId
     const wardId = req.body.wardId
     const complaintType = req.body.complaintType
+    const complaintTitle = req.body.complaintTitle
     const complaintNumber = await complaintService.generatecomplaintNumber()
     let objectOfComplaint = {
       complaintDescription: complaintDescription,
@@ -19,7 +20,8 @@ exports.createComplaint = async (req, res) => {
       wardId: wardId,
       assemblyId: assemblyId,
       complaintType: complaintType,
-      complaintNumber: complaintNumber
+      complaintNumber: complaintNumber,
+      complaintTitle: complaintTitle
     }
     const saveComplaint = new complaintModel(objectOfComplaint)
     const complaintDetails = await saveComplaint.save()
@@ -51,13 +53,16 @@ exports.createSuggestion = async (req, res) => {
     const userId = req.decoded._id
     const assemblyId = req.body.assemblyId
     const wardId = req.body.wardId
+    const suggestionTitle = req.body.suggestionTitle
+
     const suggestionNumber = await complaintService.generateSuggestionNumber()
     let objectOfSuggestion = {
       suggestionDescription: suggestionDescription,
       userId: userId,
       wardId: wardId,
       assemblyId: assemblyId,
-      suggestionNumber: suggestionNumber
+      suggestionNumber: suggestionNumber,
+      suggestionTitle:suggestionTitle
     }
     const saveSuggestion = new suggestionModel(objectOfSuggestion)
     const suggestionDetails = await saveSuggestion.save()
@@ -75,18 +80,17 @@ exports.createSuggestion = async (req, res) => {
   }
 }
 
-
 exports.updateComplaint = async (req, res) => {
   try {
     const complaintDescription = req.body.complaintDescription
     const complaintId = req.body.complaintId
-    const updateComplaintDetails  = await complaintModel.updateOne(
+    const updateComplaintDetails = await complaintModel.updateOne(
       {
-        _id:complaintId
+        _id: complaintId
       },
       {
-        $set:{
-          complaintDescription:complaintDescription
+        $set: {
+          complaintDescription: complaintDescription
         }
       }
     )
@@ -107,22 +111,27 @@ exports.complaintDetailsWithUserId = async (req, res) => {
   try {
     const userId = req.decoded._id
     const complaintDetails = await complaintModel.find(
-      {userId:userId}
-    ).lean()
-    if(complaintDetails){
+      { userId: userId }
+    )
+      .populate('userId')
+      .populate('assemblyId')
+      .populate('wardId')
+      .sort({createdAt:-1})
+      .lean()
+    if (complaintDetails) {
       return res
-      .status(statusCode.success)
-      .send({
-        message: message.SUCCESS,
-        data:complaintDetails
-      });
-    }else{
+        .status(statusCode.success)
+        .send({
+          message: message.SUCCESS,
+          data: complaintDetails
+        });
+    } else {
       return res
-      .status(statusCode.error)
-      .send({
-        message: message.Data_not_found,
-        data:[]
-      });
+        .status(statusCode.error)
+        .send({
+          message: message.Data_not_found,
+          data: []
+        });
     }
   } catch (error) {
     console.log("error in createComplaint function ", error);
@@ -136,24 +145,28 @@ exports.complaintDetailsWithHandlerId = async (req, res) => {
   try {
     const userId = req.decoded._id
     const complaintDetails = await assigncomplaintModel.find(
-      {userId:userId}
-    ).populate("complaintId").lean()
-    if(complaintDetails){
+      { userId: userId }
+    )
+      .populate("complaintId")
+      .populate("userId")
+      .sort({createdAt:-1})
+      .lean()
+    if (complaintDetails) {
       return res
-      .status(statusCode.success)
-      .send({
-        message: message.SUCCESS,
-        data:complaintDetails
-      });
-    }else{
+        .status(statusCode.success)
+        .send({
+          message: message.SUCCESS,
+          data: complaintDetails
+        });
+    } else {
       return res
-      .status(statusCode.error)
-      .send({
-        message: message.Data_not_found,
-        data:[]
-      });
+        .status(statusCode.error)
+        .send({
+          message: message.Data_not_found,
+          data: []
+        });
     }
-    
+
   } catch (error) {
     console.log("error in createComplaint function ", error);
     return res.status(statusCode.error).send({
@@ -164,21 +177,26 @@ exports.complaintDetailsWithHandlerId = async (req, res) => {
 
 exports.allcomplaintDetails = async (req, res) => {
   try {
-    const complaintDetails = await complaintModel.find({}).lean()
-    if(complaintDetails){
+    const complaintDetails = await complaintModel.find({})
+      .populate('userId')
+      .populate('assemblyId')
+      .populate('wardId')
+      .sort({createdAt:-1})
+      .lean()
+    if (complaintDetails) {
       return res
-      .status(statusCode.success)
-      .send({
-        message: message.SUCCESS,
-        data:complaintDetails
-      });
-    }else{
+        .status(statusCode.success)
+        .send({
+          message: message.SUCCESS,
+          data: complaintDetails
+        });
+    } else {
       return res
-      .status(statusCode.error)
-      .send({
-        message: message.Data_not_found,
-        data:[]
-      });
+        .status(statusCode.error)
+        .send({
+          message: message.Data_not_found,
+          data: []
+        });
     }
   } catch (error) {
     console.log("error in allcomplaintDetails function ", error);
@@ -192,22 +210,27 @@ exports.suggestionDetailsWithUserId = async (req, res) => {
   try {
     const userId = req.decoded._id
     const suggestionDetails = await suggestionModel.find(
-      {userId:userId}
-    ).lean()
-    if(suggestionDetails){
+      { userId: userId }
+    )
+      .populate('userId')
+      .populate('assemblyId')
+      .populate('wardId')
+      .sort({createdAt:-1})
+      .lean()
+    if (suggestionDetails) {
       return res
-      .status(statusCode.success)
-      .send({
-        message: message.SUCCESS,
-        data:suggestionDetails
-      });
-    }else{
+        .status(statusCode.success)
+        .send({
+          message: message.SUCCESS,
+          data: suggestionDetails
+        });
+    } else {
       return res
-      .status(statusCode.error)
-      .send({
-        message: message.Data_not_found,
-        data:[]
-      });
+        .status(statusCode.error)
+        .send({
+          message: message.Data_not_found,
+          data: []
+        });
     }
   } catch (error) {
     console.log("error in suggestionDetailsWithUserId function ", error);
@@ -219,24 +242,55 @@ exports.suggestionDetailsWithUserId = async (req, res) => {
 
 exports.allsuggestionDetails = async (req, res) => {
   try {
-    const suggestionDetails = await suggestionModel.find({}).lean()
-    if(suggestionDetails){
+    const suggestionDetails = await suggestionModel.find({})
+      .populate('userId')
+      .populate('assemblyId')
+      .populate('wardId')
+      .sort({createdAt:-1})
+      .lean()
+    if (suggestionDetails) {
       return res
-      .status(statusCode.success)
-      .send({
-        message: message.SUCCESS,
-        data:suggestionDetails
-      });
-    }else{
+        .status(statusCode.success)
+        .send({
+          message: message.SUCCESS,
+          data: suggestionDetails
+        });
+    } else {
       return res
-      .status(statusCode.error)
-      .send({
-        message: message.Data_not_found,
-        data:[]
-      });
+        .status(statusCode.error)
+        .send({
+          message: message.Data_not_found,
+          data: []
+        });
     }
   } catch (error) {
     console.log("error in allcomplaintDetails function ", error);
+    return res.status(statusCode.error).send({
+      message: message.SOMETHING_WENT_WRONG
+    })
+  }
+}
+
+exports.complaintResolve = async (req, res) => {
+  try {
+    const complaintId = req.body.complaintId
+    const complaintStatus = req.body.complaintStatus
+    const updateComplaint = await complaintModel.updateOne(
+      {_id:complaintId},
+      {
+        $set:{
+          complaintStatus:complaintStatus
+        }
+      }
+    )
+    return res
+      .status(statusCode.success)
+      .send({
+        message: message.suggestion_registered,
+        suggestionNumber: suggestionNumber
+      });
+  } catch (error) {
+    console.log("error in createComplaint function ", error);
     return res.status(statusCode.error).send({
       message: message.SOMETHING_WENT_WRONG
     })

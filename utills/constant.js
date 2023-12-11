@@ -22,7 +22,8 @@ typeOfComplant = {
 
 complaintStatus = {
   Done:"Done",
-  Not_Done:"Panding"
+  Not_Done:"Panding",
+  ResolveByHandler:"ResolveByHandler"
 }
 
 module.exports = {

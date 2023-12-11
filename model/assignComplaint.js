@@ -6,7 +6,7 @@ const assignComplaintSchema = new schema(
     complaintId:{
       type: schema.Types.ObjectId,
       required: true,
-      ref:"assembly"
+      ref:"complaint"
     },
     userId:{
       type: schema.Types.ObjectId,
